@@ -9,7 +9,6 @@ Architecture Components
     - Creates a network interface using the Apple vmnet framework, connecting the vde switch to the host OS
 - libvirt
     - Libvirt from MacPorts with the QEMU driver enabled manages virtual machines and their state
-
-TODO: Support vmnet-macos networking in QEMU
-
-Example: -netdev vmnet-macos,id=net0,mode=bridged -device virtio-net-pci,netdev=net0
+    -  The stack will use a templated libvirt domain XML to configure networking in lieu of direct libvirt support for QEMU's networking requirements on macOS
+- QEMU with vmnet-framework-v5 patches
+    - Enabling QEMU to create virtual interfaces on macOS using vmnet framework.
