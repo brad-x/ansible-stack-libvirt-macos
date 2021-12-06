@@ -1,0 +1,3 @@
+libvirt_qemu_security_driver: none
+libvirt_qemu_dynamic_ownership: '0'
+libvirt_qemu_remember_owner: '0'

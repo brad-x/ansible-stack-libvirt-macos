@@ -1,0 +1,131 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    vm_redefine: False
+    vm_name: "FreeBSD"
+    vm_network_mode: "shared"
+    vm_network_bridge_iface: "en0"
+    vm_subnet: "10.0.2.0"
+    vm_netmask: "255.255.255.0"
+  tasks:
+    - name: Configure vm_subnet_cidr
+      set_fact:
+        vm_subnet_cidr: "{{ vm_subnet + '/' + vm_netmask }}"
+
+    - name: Configure template vars
+      set_fact:
+        dhcpstart: "{{
+                      vm_subnet_cidr
+                      | ansible.netcommon.ipaddr('net')
+                      | ansible.netcommon.ipaddr('next_usable')
+                      | ansible.netcommon.ipaddr('address')
+                    }}"
+        dhcpend: "{{
+                    vm_subnet_cidr
+                    | ansible.netcommon.ipaddr('net')
+                    | ansible.netcommon.ipaddr('last_usable') 
+                    | ansible.netcommon.ipaddr('address')
+                  }}"
+        vm_macaddr: "{{
+                      '52:54:00'
+                      | community.general.random_mac
+                    }}"
+
+    - name: List VM's
+      community.libvirt.virt:
+        command: list_vms
+        uri: qemu:///system
+      register: vm_list
+
+    - name: Get current VM attributes
+      block:
+        - name: Get VM XML
+          community.libvirt.virt:
+            name: "{{ vm_name }}"
+            command: get_xml
+            uri: qemu:///system
+          register: vm_xml
+
+        - name: Get VM info
+          community.libvirt.virt:
+            name: "{{ vm_name }}"
+            command: info
+            uri: qemu:///system
+          register: vm_info
+
+        - name: Read an element's attribute values
+          xml:
+            xmlstring: "{{ vm_xml.get_xml }}"
+            xpath: /domain/qemu:commandline/qemu:arg
+            content: attribute
+            namespaces:
+              qemu: http://libvirt.org/schemas/domain/qemu/1.0
+            strip_cdata_tags: yes
+          register: xmlresp
+
+        - set_fact:
+            network_device: '{{ item["{http://libvirt.org/schemas/domain/qemu/1.0}arg"].values() | first }}'
+          with_items: "{{ xmlresp.matches }}"
+          when: item["{http://libvirt.org/schemas/domain/qemu/1.0}arg"] is search("mac=")
+
+        - set_fact:
+            network_device_attributes: "{{ network_device.split(',') }}"
+
+        - set_fact:
+            mac_address: "{{ item.split('=')[1] }}"
+          with_items: "{{ network_device_attributes }}"
+          when: item is search("mac=")
+
+        - set_fact:
+            vm_macaddr: "{{ mac_address }}"
+      when: vm_name in vm_list.list_vms
+
+    - name: Configure virtual machine bridged networking parameters
+      set_fact:
+        vm_netdev_args: "mac={{ vm_macaddr }},ifname={{ vm_network_bridge_iface }}"
+      when: vm_network_mode == "bridged"
+
+    - name: Configure virtual machine shared networking parameters
+      set_fact:
+        vm_netdev_args: "dhcpstart={{ dhcpstart }},dhcpend={{ dhcpend }},subnet-mask={{ vm_netmask }}"
+      when: vm_network_mode == "shared"
+
+    - name: Configure virtual machine shared networking parameters
+      set_fact:
+        vm_network_args: "mac={{ vm_macaddr }}"
+
+    - name: Stop current instance for redeployment
+      community.libvirt.virt:
+        name: "{{ vm_name }}"
+        command: shutdown
+        uri: qemu:///system
+      when:
+        - vm_redefine is defined
+        - vm_redefine
+        - vm_name in vm_list.list_vms
+        - vm_info[vm_name]['state'] == "running"
+
+    - name: Undefine current matching domain
+      community.libvirt.virt:
+        name: "{{ vm_name }}"
+        command: undefine
+        uri: qemu:///system
+      when:
+        - vm_redefine is defined
+        - vm_redefine
+        - vm_name in vm_list.list_vms
+
+    - name: Update VM list (in case instance was transient)
+      community.libvirt.virt:
+        command: list_vms
+        uri: qemu:///system
+      register: vm_list
+
+    - name: Define domain
+      community.libvirt.virt:
+        command: define
+        xml: "{{ lookup('template', 'libvirt-domain.xml.j2') }}"
+        uri: qemu:///system
+      when:
+        - vm_name not in vm_list.list_vms
