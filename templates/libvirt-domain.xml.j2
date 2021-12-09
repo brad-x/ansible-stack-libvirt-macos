@@ -89,8 +89,8 @@
   </devices>
   <seclabel type='none' model='none'/>
   <qemu:commandline>
-    <qemu:arg value='-machine'/>
-    <qemu:arg value='type=q35,accel=hvf'/>
+    <qemu:arg value='-accel'/>
+    <qemu:arg value='hvf'/>
     <qemu:arg value='-netdev'/>
     <qemu:arg value='vmnet-{{ vm_network_mode }},{{ vm_netdev_args }},id=internal'/>
     <qemu:arg value='-device'/>
