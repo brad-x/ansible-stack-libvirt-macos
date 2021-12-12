@@ -1,9 +1,5 @@
 - hosts: localhost
   connection: local
   become: true
-  vars:
-    vm_redefine: False
-  vars_files:
-    vars/instances.yml
   roles:
     - ansible-role-libvirt-macos
