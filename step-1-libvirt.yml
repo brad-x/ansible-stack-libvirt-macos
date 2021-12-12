@@ -19,14 +19,6 @@
         name: libvirt
         variant: +qemu
         state: present
-    
-    # - name: Install vde2 and vde_vmnet
-    #   community.general.macports:
-    #     name: '{{ item }}'
-    #     state: present
-    #   with_items:
-    #     - vde2
-    #     - vde_vmnet
 
     - name: Set qemu properties for macOS
       template:
@@ -36,13 +28,6 @@
         - qemu.conf
         - libvirtd.conf
 
-    # - name: Ensure /var/run directories exist for vde2
-    #   file:
-    #     path: /opt/local/var/run/vde2
-    #     state: directory
-    #     owner: root
-    #     group: wheel
-
     - name: Ensure /var/run directories exist for libvirt
       file:
         path: /opt/local/var/run/libvirt
@@ -50,15 +35,13 @@
         owner: root
         group: wheel
 
-    - name: Deploy LaunchDaemons for libvirt # and vde+vmnet
+    - name: Deploy LaunchDaemons for libvirt
       copy:
         src: Library/LaunchDaemons/{{ item }}
         dest: /Library/LaunchDaemons/{{ item }}
       with_items:
         - com.brad-x.libvirt.libvirtd.plist
         - com.brad-x.libvirt.virtlogd.plist
-        # - com.brad-x.vmnet.vde_vmnet.plist
-        # - com.brad-x.vmnet.vde2.plist
 
     - name: Load and start the services
       community.general.launchd:
@@ -68,5 +51,3 @@
       with_items:
         - com.brad-x.libvirt.libvirtd
         - com.brad-x.libvirt.virtlogd
-        # - com.brad-x.vmnet.vde_vmnet
-        # - com.brad-x.vmnet.vde2
