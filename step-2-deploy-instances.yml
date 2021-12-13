@@ -2,4 +2,4 @@
   connection: local
   become: true
   roles:
-    - ansible-role-libvirt-vm-macos
+    - libvirt-vm-macos
