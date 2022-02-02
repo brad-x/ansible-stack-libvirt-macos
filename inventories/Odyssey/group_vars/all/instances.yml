@@ -1,0 +1,19 @@
+instances:
+  - name: "openSUSE"
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G
+  - name: "Gentoo"
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G

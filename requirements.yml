@@ -1,0 +1,14 @@
+collections:
+  - name: community.general
+    source: https://galaxy.ansible.com
+  - name: community.crypto
+    source: https://galaxy.ansible.com
+
+roles:
+  - src: https://git.brad-x.com/ansible/ansible-role-libvirt-macos.git
+    scm: git
+    name: libvirt-macos
+
+  - src: https://git.brad-x.com/ansible/ansible-role-libvirt-vm-macos.git
+    scm: git
+    name: libvirt-vm-macos
