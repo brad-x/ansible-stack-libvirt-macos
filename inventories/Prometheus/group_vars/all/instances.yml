@@ -1,0 +1,9 @@
+instances:
+  - name: "brad-x-intranet"
+    network_mode: "bridged"
+    network_bridge_iface: "en0"
+    mem: 4G
+    disks:
+      - name: root
+        type: qcow2
+        size: 20G
