@@ -2,4 +2,4 @@
   connection: local
   become: true
   roles:
-    - libvirt-vm-macos
+    - qemu-macos-vm
