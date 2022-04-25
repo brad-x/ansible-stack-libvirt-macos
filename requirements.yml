@@ -7,4 +7,4 @@ collections:
 roles:
   - src: https://git.brad-x.com/brad/ansible-role-qemu-macos-vm.git
     scm: git
-    name: libvirt-vm-macos
+    name: qemu-macos-vm
