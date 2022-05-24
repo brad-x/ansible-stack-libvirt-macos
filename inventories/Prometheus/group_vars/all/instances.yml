@@ -7,16 +7,17 @@ instances:
       - name: root
         type: qcow2
         size: 20G
-  - name: "brad-x-fileservices"
-    network_mode: "bridged"
-    network_bridge_iface: "en0"
-    mem: 16G
-    disks:
-      - name: root
-        type: qcow2
-        size: 96G
-    physical_disks:
-      - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT0@0-PMP@0-@0:0"
-      - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT1@1-PMP@0-@0:0"
-      - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT2@2-PMP@0-@0:0"
-      - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT3@3-PMP@0-@0:0"
+  #### DANGER DANGER DANGER ####
+  # - name: "brad-x-fileservices"
+  #   network_mode: "bridged"
+  #   network_bridge_iface: "en0"
+  #   mem: 16G
+  #   disks:
+  #     - name: root
+  #       type: qcow2
+  #       size: 96G
+  #   physical_disks:
+  #     - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT0@0-PMP@0-@0:0"
+  #     - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT1@1-PMP@0-@0:0"
+  #     - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT2@2-PMP@0-@0:0"
+  #     - "/var/run/disk/by-path/PCI0@0-PEG2@1,2-UPSB@0-DSB1@1-UPS0@0-pci-bridge@2-pci197b,585@0-PRT3@3-PMP@0-@0:0"
