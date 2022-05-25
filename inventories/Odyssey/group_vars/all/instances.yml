@@ -1,5 +1,5 @@
 instances:
-  - name: "openSUSE"
+  - name: "Gentoo"
     firmware: efi
     cpus: 6
     network_mode: "shared"
