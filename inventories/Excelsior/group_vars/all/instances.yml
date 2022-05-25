@@ -18,7 +18,7 @@ instances:
         type: qcow2
         size: 64G
   - name: "tiny-TinysBBS2019"
-    network_mode: "bridged"
+    network_mode: "none"
     network_bridge_iface: "en0"
     cpus: 4
     mem: 4G

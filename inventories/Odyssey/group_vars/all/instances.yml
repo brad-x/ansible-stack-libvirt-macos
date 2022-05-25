@@ -1,5 +1,18 @@
 instances:
-  - name: "Gentoo"
+  - name: "openSUSE"
+    firmware: efi
+    cpus: 6
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G
+  - name: "FreeBSD"
+    firmware: efi
+    cpus: 6
     network_mode: "shared"
     subnet: "10.0.2.0"
     netmask: "255.255.255.0"
