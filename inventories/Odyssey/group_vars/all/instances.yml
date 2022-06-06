@@ -1,6 +1,6 @@
 instances:
   - name: "Gentoo"
-    firmware: efi
+    firmware_type: efi
     cpus: 6
     network_mode: "shared"
     subnet: "10.0.2.0"
@@ -11,7 +11,7 @@ instances:
         type: qcow2
         size: 128G
   - name: "FreeBSD"
-    firmware: efi
+    firmware_type: efi
     cpus: 6
     network_mode: "shared"
     subnet: "10.0.2.0"
@@ -21,11 +21,3 @@ instances:
       - name: root
         type: qcow2
         size: 128G
-  - name: "tiny-TinysBBS2019"
-    network_mode: "none"
-    cpus: 4
-    mem: 4G
-    disks:
-      - name: root
-        type: qcow2
-        size: 30G

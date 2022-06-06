@@ -1,4 +1,16 @@
 instances:
+  - name: "brad-x-Windows-11"
+    firmware_type: efi
+    graphics_driver: cocoa
+    cpu_type: host
+    network_mode: "bridged"
+    network_bridge_iface: "en0"
+    cpus: 10
+    mem: 16G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G
   - name: "brad-x-webservices"
     network_mode: "bridged"
     network_bridge_iface: "en0"
