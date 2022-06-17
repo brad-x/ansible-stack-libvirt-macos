@@ -1,4 +1,15 @@
 instances:
+  - name: "MacOS_9"
+    machine_type: ppc
+    cpus: 1
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 256M
+    disks:
+      - name: root
+        type: qcow2
+        size: 32G
   - name: "Gentoo"
     firmware_type: efi
     cpus: 6
@@ -10,7 +21,7 @@ instances:
       - name: root
         type: qcow2
         size: 128G
-  - name: "FreeBSD"
+  - name: "openSUSE"
     firmware_type: efi
     cpus: 6
     network_mode: "shared"
