@@ -44,3 +44,32 @@ instances:
       - name: root
         type: qcow2
         size: 64G
+  - name: "Gentoo"
+    launchd: false
+    config_path: /Users/brad/.qemu/configs
+    image_path: /Users/brad/.qemu/images
+    display_type: cocoa
+    firmware_type: efi
+    cpus: 6
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G
+  - name: "openSUSE"
+    launchd: false
+    config_path: /Users/brad/.qemu/configs
+    image_path: /Users/brad/.qemu/images
+    firmware_type: efi
+    cpus: 6
+    network_mode: "shared"
+    subnet: "10.0.2.0"
+    netmask: "255.255.255.0"
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G

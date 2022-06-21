@@ -1,29 +1,10 @@
 instances:
-  - name: "MacOS_9"
-    machine_type: ppc
-    cpus: 1
-    network_mode: "shared"
-    subnet: "10.0.2.0"
-    netmask: "255.255.255.0"
-    mem: 256M
-    disks:
-      - name: root
-        type: qcow2
-        size: 32G
-  - name: "Gentoo"
+  - name: "Windows"
+    launchd: true
     firmware_type: efi
     cpus: 6
-    network_mode: "shared"
-    subnet: "10.0.2.0"
-    netmask: "255.255.255.0"
-    mem: 8G
-    disks:
-      - name: root
-        type: qcow2
-        size: 128G
-  - name: "openSUSE"
-    firmware_type: efi
-    cpus: 6
+    cpu_type: qemu64
+    display_type: cocoa
     network_mode: "shared"
     subnet: "10.0.2.0"
     netmask: "255.255.255.0"
