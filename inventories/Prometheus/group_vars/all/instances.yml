@@ -1,7 +1,9 @@
 instances:
   - name: "brad-x-intranet"
+    launchd: true
     network_mode: "bridged"
     network_bridge_iface: "en0"
+    cpus: 4
     mem: 4G
     disks:
       - name: root
