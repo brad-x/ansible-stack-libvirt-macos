@@ -1,5 +1,6 @@
 instances:
   - name: "brad-x-webservices"
+    launchd: true
     network_mode: "bridged"
     network_bridge_iface: "en0"
     cpus: 10
@@ -9,6 +10,7 @@ instances:
         type: qcow2
         size: 128G
   - name: "brad-x-plex"
+    launchd: true
     network_mode: "bridged"
     network_bridge_iface: "en0"
     cpus: 10
@@ -18,6 +20,7 @@ instances:
         type: qcow2
         size: 64G
   - name: "tiny-TinysBBS2019"
+    launchd: true
     network_mode: "none"
     network_bridge_iface: "en0"
     cpus: 4

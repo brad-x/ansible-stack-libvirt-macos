@@ -49,6 +49,7 @@ instances:
     config_path: /Users/brad/.qemu/configs
     image_path: /Users/brad/.qemu/images
     display_type: cocoa
+    graphics_driver: virtio-vga,edid=off,max_hostmem=1073741824
     firmware_type: efi
     cpus: 6
     network_mode: "shared"
@@ -63,6 +64,7 @@ instances:
     launchd: false
     config_path: /Users/brad/.qemu/configs
     image_path: /Users/brad/.qemu/images
+    graphics_driver: virtio-vga,edid=off,max_hostmem=1073741824
     firmware_type: efi
     cpus: 6
     network_mode: "shared"
