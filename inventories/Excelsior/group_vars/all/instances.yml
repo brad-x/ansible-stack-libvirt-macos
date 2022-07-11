@@ -30,3 +30,4 @@ instances:
       - name: root
         type: qcow2
         size: 30G
+    vnc_password: smith122
