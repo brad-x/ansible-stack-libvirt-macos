@@ -21,9 +21,10 @@ instances:
         size: 64G
   - name: "tiny-TinysBBS2019"
     launchd: true
-    network_mode: "none"
+    network_mode: "bridged"
     network_bridge_iface: "en0"
     cpus: 4
+    cpu_type: qemu64
     mem: 4G
     disks:
       - name: root
