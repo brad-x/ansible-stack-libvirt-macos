@@ -9,6 +9,16 @@ instances:
       - name: root
         type: qcow2
         size: 128G
+  - name: "brad-x-webmail"
+    launchd: true
+    network_mode: "bridged"
+    network_bridge_iface: "en0"
+    cpus: 10
+    mem: 16G
+    disks:
+      - name: root
+        type: qcow2
+        size: 128G
   - name: "brad-x-plex"
     launchd: true
     network_mode: "bridged"
@@ -25,7 +35,7 @@ instances:
     network_bridge_iface: "en0"
     cpus: 4
     cpu_type: qemu64
-    mem: 4G
+    mem: 2G
     disks:
       - name: root
         type: qcow2
