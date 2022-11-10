@@ -7,7 +7,7 @@ instances:
     cpus: 6
     cpu_type: qemu64
     display_type: cocoa
-    graphics_driver: virtio-vga,edid=off,max_hostmem=1073741824
+    graphics_driver: virtio-vga,max_hostmem=1073741824
     network_mode: "shared"
     subnet: "10.0.2.0"
     netmask: "255.255.255.0"
@@ -39,32 +39,15 @@ instances:
     cpus: 1
     network_mode: "bridged"
     network_bridge_iface: "en0"
-    mem: 256M
+    mem: 1G
     disks:
       - name: root
         type: qcow2
         size: 64G
   - name: "Gentoo"
-    launchd: false
-    config_path: /Users/brad/.qemu/configs
-    image_path: /Users/brad/.qemu/images
-    display_type: cocoa
-    graphics_driver: virtio-vga,edid=off,max_hostmem=1073741824
-    firmware_type: efi
-    cpus: 6
-    network_mode: "shared"
-    subnet: "10.0.2.0"
-    netmask: "255.255.255.0"
-    mem: 8G
-    disks:
-      - name: root
-        type: qcow2
-        size: 128G
-  - name: "openSUSE"
-    launchd: false
-    config_path: /Users/brad/.qemu/configs
-    image_path: /Users/brad/.qemu/images
-    graphics_driver: virtio-vga,edid=off,max_hostmem=1073741824
+    launchd: true
+    display_type: cocoa,show-cursor=off
+    graphics_driver: virtio-vga
     firmware_type: efi
     cpus: 6
     network_mode: "shared"
