@@ -46,7 +46,7 @@ instances:
         size: 64G
   - name: "Gentoo"
     launchd: true
-    display_type: cocoa,show-cursor=on
+    display_type: cocoa,show-cursor=off
     graphics_driver: virtio-vga
     firmware_type: efi
     cpus: 6
