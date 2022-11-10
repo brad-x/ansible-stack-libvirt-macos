@@ -29,6 +29,16 @@ instances:
       - name: root
         type: qcow2
         size: 64G
+  - name: "brad-x-servarr"
+    launchd: true
+    network_mode: "bridged"
+    network_bridge_iface: "en0"
+    cpus: 10
+    mem: 8G
+    disks:
+      - name: root
+        type: qcow2
+        size: 64G
   - name: "tiny-TinysBBS2019"
     launchd: true
     network_mode: "bridged"
