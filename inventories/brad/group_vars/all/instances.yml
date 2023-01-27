@@ -45,7 +45,9 @@ instances:
         type: qcow2
         size: 64G
   - name: "Gentoo"
-    launchd: true
+    launchd: false
+    config_path: /Users/brad/.qemu/configs
+    image_path: /Users/brad/.qemu/images
     display_type: cocoa,show-cursor=off
     graphics_driver: virtio-vga
     firmware_type: efi
